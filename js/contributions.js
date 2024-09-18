@@ -41,6 +41,9 @@ if (urlParams.has('token')) {
 }
 localStorage.setItem('token', token);
 
+const infobox = document.getElementById('info');
+infobox.innerHTML = `${username} - ${year}`;
+
 // Import JSON data
 async function loadJSON(username, year) {
 	let url = 'https://corsproxy.io?' + encodeURIComponent(`https://json-contributions-sigma.vercel.app/api/user?username=${username}&year=${year}&token=${token}`);
@@ -140,10 +143,11 @@ const init = () => {
 	// RENDERER
 	renderer = new THREE.WebGLRenderer({ antialias: true });
 	renderer.setPixelRatio(window.devicePixelRatio);
-	renderer.setSize(window.innerWidth, window.innerHeight);
+	renderer.setSize(window.innerWidth, window.innerHeight - 160);
 	renderer.outputEncoding = THREE.sRGBEncoding;
 	renderer.setClearColor(0xffffff, 1);
-	document.body.appendChild(renderer.domElement);
+	const contributions = document.getElementById('contributions');
+	contributions.appendChild(renderer.domElement);
 
 	// MATERIALS
 	let phongMaterial = new THREE.MeshPhongMaterial({ color: 0x40c463, transparent: true, opacity: 0.2, side: THREE.DoubleSide });
