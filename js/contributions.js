@@ -34,7 +34,11 @@ if (urlParams.has('year')) {
 if (urlParams.has('token')) {
 	token = urlParams.get('token');
 } else {
-	token = prompt('Please enter your GitHub token');
+	token = localStorage.getItem('token');
+	if (!token) {
+		token = prompt('Please enter your GitHub token');
+		localStorage.setItem('token', token);
+	}
 }
 
 // Import JSON data
