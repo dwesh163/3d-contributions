@@ -42,7 +42,7 @@ if (urlParams.has('token')) {
 localStorage.setItem('token', token);
 
 const infobox = document.getElementById('info');
-infobox.innerHTML = `${username} - ${year}`;
+infobox.innerHTML = `<a href="https://github.com/${username}">${username}</a> - ${year}`;
 
 // Import JSON data
 async function loadJSON(username, year) {
