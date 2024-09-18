@@ -37,18 +37,16 @@ if (urlParams.has('token')) {
 	token = localStorage.getItem('token');
 	if (!token) {
 		token = prompt('Please enter your GitHub token');
-		localStorage.setItem('token', token);
 	}
 }
+localStorage.setItem('token', token);
 
 // Import JSON data
 async function loadJSON(username, year) {
 	let url = 'https://corsproxy.io?' + encodeURIComponent(`https://json-contributions-sigma.vercel.app/api/user?username=${username}&year=${year}&token=${token}`);
-	console.log(url);
 	let response = await fetch(url);
 	if (response.ok) {
 		json = await response.json();
-		console.log(json);
 		init();
 		render();
 	} else {
